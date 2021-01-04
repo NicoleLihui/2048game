@@ -1,0 +1,41 @@
+MVC开发架构：
+M——Model    模型层  HTML        主要放一些游戏的数据
+V——View     视图层  CSS + JS    前台的UI、动画效果逻辑
+C——Control  控制层  JS          主逻辑 支撑逻辑、底层的运转逻辑
+
+·   从HTML点击链接添加函数：<a href="javascript: newGame();">New Game</a>
+·   用id的索引，给具有一定规律性的页面元素添加样式，比如4*4棋盘格设置为二维数组，利用数组下标和棋盘格对应的id来匹配样式及内容
+·   开发时，对于能应用很多次的函数多想几步，但是逻辑思考的差不多了，也不怕出错，先写出来再一点点debug
+·   把网页版的小游戏移动化，两个问题： 1. 让游戏前端显示适应手机的屏幕大小，且自适应不同的尺寸；
+                                    2. 交互方式，触摸屏控制事件
+·   viewport：
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta name="viewport" content="width=device-width | pixel_value, height=device-height | pixel_value, initial-scale=1.0（应用程序启动时缩放的尺度，一个浮点值）,minimum-scale=1.0（用户可以缩放的最小值）,maximum-scale=1.0（用户可以缩放的最大值）,user-scalable=no | yes"（用户是否可以用手势来缩放整个应用程序，来改变尺寸） />
+·   给相对尺寸设定参照物：  window.screen.availWidth;(设备宽度)
+·   屏幕控制：
+        startX = event.touches[0].pageX
+        startY = event.touches[0].pageY
+        endX = event.changeTouches[0].pageX
+        endY = event.changeTouches[0].pageY
+·   Math.abs()取绝对值
+·   event.preventDefault()阻挡浏览器默认的效果（在Android3.0版本中存在一个bug，注意在开发过程中积累一些比较琐碎的知 识）
+·   Web Applications与Native Applications：
+    web App：   运行、发布在服务器上
+                通过浏览器执行
+                使用技术：HTML、css、js
+        优点：  用户有时无法区分一些样式细节
+                更容易自适应屏幕
+                更多的硬件支持的API逐渐成熟
+                html5在日渐成熟、优化，渲染效率变高
+                设备无关（一次开发多平台发布）
+                不局限于Appstore
+
+    Native App：通过App Store直接下载
+                直接运行在移动设备上
+                使用技术：objective-c（iOS）、Java（Android）
+
+·   两个工具：   Dropbox：一款在国外比较火的云存储软件，可以免费天然集成发布一个静态网站的功能（目前可能不对新用户开放了）
+                将web变成native的技术（工具）：Phone Gap
+·   hybridApp 混合模式移动应用开发
+        优势：  介于webApp和nativeApp之间
+                兼具nativeApp良好用户交互体验的优势和 web跨平台开发的优势
